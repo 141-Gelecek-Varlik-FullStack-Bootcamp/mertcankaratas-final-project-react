@@ -2,11 +2,11 @@ import React, { useState,useEffect } from 'react'
 import { Button, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
 import ProductService from '../services/paymentService'
 export default function PaymentList() {
-    const [products, setProducts] = useState([])
+    const [payments, setPayments] = useState([])
 
     useEffect(()=>{
         let productService = new ProductService()
-        productService.getPayments().then(result=>setProducts(result.data.data))
+        productService.getPayments().then(result=>setPayments(result.data.data))
     })
     return (
         <div>
@@ -23,12 +23,12 @@ export default function PaymentList() {
 
                 <Table.Body>
                     {
-                        products.map(product => (
-                            <Table.Row key={product.id}>
-                                <Table.Cell>{product.name}</Table.Cell>
-                                <Table.Cell>{product.price}</Table.Cell>
-                                <Table.Cell>{product.stock}</Table.Cell>
-                                <Table.Cell>{product.description}</Table.Cell>
+                        payments.map(payment => (
+                            <Table.Row key={payment.paymentId}>
+                                <Table.Cell>{payment.userId}</Table.Cell>
+                                <Table.Cell>{payment.aparmentId}</Table.Cell>
+                                <Table.Cell>{payment.invoiceId}</Table.Cell>
+                                <Table.Cell>{payment.amount}</Table.Cell>
                              
 
                             </Table.Row>
