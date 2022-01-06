@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
-import ProductService from '../services/paymentService'
+import PaymentService from '../services/paymentService'
 export default function PaymentList() {
     const [payments, setPayments] = useState([])
 
     useEffect(()=>{
-        let productService = new ProductService()
-        productService.getPayments().then(result=>setPayments(result.data.data))
-    })
+        let paymentService = new PaymentService()
+        paymentService.getPayments().then(result=>setPayments(result.data.data))
+    },[])
     return (
         <div>
             <Table celled>
@@ -25,7 +26,7 @@ export default function PaymentList() {
                     {
                         payments.map(payment => (
                             <Table.Row key={payment.paymentId}>
-                                <Table.Cell>{payment.userId}</Table.Cell>
+                                <Table.Cell><Link to={`/paymentdetail/${payment.paymentId}`}>{payment.userId}</Link></Table.Cell>
                                 <Table.Cell>{payment.aparmentId}</Table.Cell>
                                 <Table.Cell>{payment.invoiceId}</Table.Cell>
                                 <Table.Cell>{payment.amount}</Table.Cell>
