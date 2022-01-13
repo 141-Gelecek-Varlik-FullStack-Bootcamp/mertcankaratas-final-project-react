@@ -14,7 +14,7 @@ export default function DuesAdd() {
 
         //insert user tokendan gelicek
     })
-
+    
     const onSubmit = (values, { resetForm }) => {
        
         duesService.addDues(values).then((result) => {

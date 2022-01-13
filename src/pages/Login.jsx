@@ -1,34 +1,54 @@
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import * as Yup from "yup"
+import { Button, FormField, Label } from 'semantic-ui-react'
+import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
+import AuthService from '../services/authService'
+import { toast} from "react-toastify"
+
+
 export default function Login() {
+    const initialValues = { userId: "", apartmentId: "" }
+    
+    let authService = new AuthService();
+    const schema = Yup.object({
+        email: Yup.string().required("Email adresi girmek zorunludur."),
+        password: Yup.string().required("Parola girmek zorunludur."),
+        //insert user tokendan gelicek
+    })
+
+
+    const onSubmit = (values, { resetForm }) => {
+
+        authService.login(values).then((result) => {
+            //toast.success(result.data)
+             console.log(result.data)
+            
+        }).catch((result) => {
+            toast(result.response.data)
+        })
+        setTimeout(() => {
+            resetForm();
+        }, 3000)
+    }
     return (
         <div>
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' color='teal' textAlign='center'>
-                    Log-in to your account
-                    </Header>
-                    <Form size='large'>
-                        <Segment stacked>
-                            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-                            <Form.Input
-                                fluid
-                                icon='lock'
-                                iconPosition='left'
-                                placeholder='Password'
-                                type='password'
-                            />
+            <Formik
+                initialValues={initialValues}
+                validationSchema={schema}
+                onSubmit={onSubmit }>
+                <Form className='ui form'>
+                    <Label pointing="below" ribbon>Email</Label>
+                    <ApartmentTextInput name="email" placeholder="mertcan@mertcan.com" />
 
-                            <Button color='teal' fluid size='large'>
-                                Login
-                            </Button>
-                        </Segment>
-                    </Form>
-                    <Message>
-                        New to us? <a href='#'>Sign Up</a>
-                    </Message>
-                </Grid.Column>
-            </Grid>
+                    <Label pointing="below" ribbon>Parola</Label>
+                    <ApartmentTextInput name="password" placeholder="4" />
+
+
+
+                    <Button color='green' type="submit">Login</Button>
+                </Form>
+            </Formik>
         </div>
     )
 }
