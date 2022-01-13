@@ -1,24 +1,34 @@
 import React, { useState,useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
 import PaymentService from '../services/paymentService'
+import { addToCart } from '../store/actions/cartActions'
+import { toast} from "react-toastify"
 export default function PaymentList() {
+
+    const dispatch = useDispatch();
     const [payments, setPayments] = useState([])
 
     useEffect(()=>{
         let paymentService = new PaymentService()
         paymentService.getPayments().then(result=>setPayments(result.data.data))
     },[])
+
+    const handleAddToCart=(payment)=>{
+        dispatch(addToCart(payment))
+        toast.success(`${payment.paymentId} sepete eklendi`)
+    }
     return (
         <div>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Ürün Adı</Table.HeaderCell>
+                        <Table.HeaderCell>PaymentId</Table.HeaderCell>
                         <Table.HeaderCell>Fiyatı</Table.HeaderCell>
                         <Table.HeaderCell>Stok</Table.HeaderCell>
                         <Table.HeaderCell>Açıklama</Table.HeaderCell>
-                        <TableHeader></TableHeader>
+                        <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -30,6 +40,8 @@ export default function PaymentList() {
                                 <Table.Cell>{payment.aparmentId}</Table.Cell>
                                 <Table.Cell>{payment.invoiceId}</Table.Cell>
                                 <Table.Cell>{payment.amount}</Table.Cell>
+                                <Table.Cell><Button onClick={()=> handleAddToCart(payment)}>Sepete Ekle</Button></Table.Cell>
+
                              
 
                             </Table.Row>

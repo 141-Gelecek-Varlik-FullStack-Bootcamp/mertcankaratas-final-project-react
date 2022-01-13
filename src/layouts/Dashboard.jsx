@@ -10,9 +10,14 @@ import {
     Link
 } from 'react-router-dom';
 import PaymentDetail from '../pages/PaymentDetail'
+import Login from '../pages/Login'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import PaymentAdd from '../pages/paymentAdd'
 export default function Dashboard() {
     return (
         <div>
+            <ToastContainer position='bottom-right'/>
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={4}>
@@ -22,6 +27,8 @@ export default function Dashboard() {
                         <Routes>
                             <Route exact path='/' element={< PaymentList />}></Route>
                             <Route exact path='/paymentdetail/:id' element={< PaymentDetail />}></Route>
+                            <Route exact path='/login' element={< Login />}></Route>
+                            <Route exact path='/payment/add' element={< PaymentAdd />}></Route>
 
                             
 
