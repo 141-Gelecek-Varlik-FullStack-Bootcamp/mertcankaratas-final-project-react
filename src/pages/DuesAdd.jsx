@@ -3,27 +3,42 @@ import React from 'react'
 import * as Yup from "yup"
 import { Button, FormField, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
+import DuesService from '../services/duesService'
+import { toast} from "react-toastify"
 export default function DuesAdd() {
-    const initialValues = { userId: "", apartmentId: "" }
-
+    const initialValues = {}
+    let duesService = new DuesService();
     const schema = Yup.object({
-    
+
         amount: Yup.number().required("Aidat tutarı zorunludur."),
-     
+
         //insert user tokendan gelicek
     })
+
+    const onSubmit = (values, { resetForm }) => {
+       
+        duesService.addDues(values).then((result) => {
+            toast.success(result.data.message)
+        }).catch((result) => {
+            toast(result.response.data.message)
+        })
+        setTimeout(() => {
+            resetForm();
+        }, 3000)
+    }
+
     return (
+
         <div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
-                onSubmit={(values) =>
-                    console.log(values)}>
+                onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below"color='teal'ribbon>Aidat Tutarı</Label>
+                    <Label pointing="below" color='teal' ribbon>Aidat Tutarı</Label>
                     <ApartmentTextInput name="amount" placeholder="125" />
 
-                    
+
 
 
 
