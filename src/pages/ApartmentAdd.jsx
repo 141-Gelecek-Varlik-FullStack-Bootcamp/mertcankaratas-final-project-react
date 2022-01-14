@@ -50,7 +50,7 @@ export default function ApartmentAdd() {
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
                     
-                  <Label color='teal' as="a" size='large'>Aidat Numarası</Label>
+                  <Label color='teal'  size='large'>Aidat Numarası</Label>
                   <Divider />
                     <ApartmentTextInput  name="duesId" placeholder="1" />
                     <Divider/>

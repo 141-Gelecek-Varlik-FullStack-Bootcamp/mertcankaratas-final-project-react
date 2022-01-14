@@ -4,7 +4,7 @@ import React from 'react'
 import * as Yup from "yup"
 import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
-import UserService from"../services/userService"
+import UserService from "../services/userService"
 import { toast } from "react-toastify"
 export default function UserAdd() {
     const initialValues = { identityNo: "", firstName: "", lastName: "", email: "", password: "", plaka: "" }
@@ -19,6 +19,19 @@ export default function UserAdd() {
 
         //insert user tokendan gelicek
     })
+
+    var password = document.getElementById("password");
+
+    function genPassword() {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var passwordLength = 12;
+        var password = "";
+        for (var i = 0; i <= passwordLength; i++) {
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNumber, randomNumber + 1);
+        }
+        document.getElementById("password").value = password;
+    }
 
 
     const onSubmit = (values, { resetForm }) => {
@@ -39,48 +52,48 @@ export default function UserAdd() {
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label color='teal'  size='large'>Kimlik No</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Kimlik No</Label>
+                    <Divider />
                     <ApartmentTextInput name="identityNo" placeholder="12345678901" />
-                    <Divider/>
+                    <Divider />
 
-                    <Label color='teal'  size='large'>Ad</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Ad</Label>
+                    <Divider />
 
                     <ApartmentTextInput name="firstName" placeholder="Mertcan" />
-                    <Divider/>
+                    <Divider />
 
-                    <Label color='teal'  size='large'>Soyad</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Soyad</Label>
+                    <Divider />
 
                     <ApartmentTextInput name="lastName" placeholder="Karataş" />
-                    <Divider/>
+                    <Divider />
 
-                    <Label color='teal'  size='large'>Email</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Email</Label>
+                    <Divider />
 
                     <ApartmentTextInput name="email" placeholder="mertcan@mertcan.com" />
-                    <Divider/>
+                    <Divider />
 
-                    <Label color='teal'  size='large'>Parola</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Parola</Label>
+                    <Divider />
 
                     <ApartmentTextInput name="password" placeholder="4" />
-                    <Divider/>
+                    <Divider />
 
 
-                    <Label color='teal'  size='large'>Plaka</Label>
-                    <Divider/>
+                    <Label color='teal' size='large'>Plaka</Label>
+                    <Divider />
 
                     <ApartmentTextInput name="plaka" placeholder="34mcn34" />
-                    <Divider/>
+                    <Divider />
 
 
 
 
 
 
-                    <Button color='teal'  size='large'>Kullanıcı Ekle</Button>
+                    <Button color='teal' size='large'>Kullanıcı Ekle</Button>
                 </Form>
             </Formik>
         </Container>

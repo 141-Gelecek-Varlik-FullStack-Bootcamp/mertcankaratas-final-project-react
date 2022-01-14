@@ -1,15 +1,17 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label } from 'semantic-ui-react'
+import { Button, FormInput, Grid, Header, Image, Message, Segment,Label, Container, Divider } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
+import ApartmentPasswordInput from '../utilities/customFormControls/ApartmentPasswordInput';
 import AuthService from '../services/authService'
-import { toast} from "react-toastify"
+import { toast } from "react-toastify"
 import jwt_decode from "jwt-decode";
 
 export default function Login() {
     const initialValues = { email: "", password: "" }
-    
+
     let authService = new AuthService();
     const schema = Yup.object({
         email: Yup.string().required("Email adresi girmek zorunludur."),
@@ -22,34 +24,45 @@ export default function Login() {
 
         authService.login(values).then((result) => {
             //toast.success(result.data)
-             console.log(result.data.token)
-             console.log(jwt_decode(result.data.token))
-            
+            console.log(result.data.token)
+            {
+                let tokenInfo = [jwt_decode(result.data.token)]
+                console.log(...tokenInfo)
+            }
+
+
+
         }).catch((result) => {
-            toast(result.response.data)
+            toast(result.data)
         })
         setTimeout(() => {
             resetForm();
         }, 3000)
     }
     return (
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
-                onSubmit={onSubmit }>
+                onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below" ribbon>Email</Label>
-                    <ApartmentTextInput name="email" placeholder="mertcan@mertcan.com" />
+                    <Label color='teal'  size='large'>Email</Label>
+                    <Divider/>
+                    <ApartmentTextInput icon='user' name="email" placeholder="mertcan@mertcan.com" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Parola</Label>
-                    <ApartmentTextInput name="password" placeholder="4" />
+                    <Label color='teal'  size='large'>Parola</Label>
+                    <Divider/>
 
+                    <ApartmentPasswordInput name="password" placeholder="*************" />
+                    <Divider/>
 
+                   
 
-                    <Button color='green' type="submit">Login</Button>
+                        <Button color='green' type="submit">Login</Button>
+                        
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }
