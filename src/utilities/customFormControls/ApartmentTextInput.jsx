@@ -9,7 +9,7 @@ export default function ApartmentTextInput({ ...props }) {
         <div>
             <FormField error={meta.touched && !!meta.error}>
                 {/* <input {...field} {...props}></input> */}
-                <Form.Input fluid type='password'  icon='lock' iconPosition='left' {...field} {...props} ></Form.Input>
+                <Form.Input fluid type='password'   iconPosition='left' {...field} {...props} ></Form.Input>
                 {meta.touched && !!meta.error ? (
                     <Label pointing basit color="red" content={meta.error}></Label>
                 ):null}

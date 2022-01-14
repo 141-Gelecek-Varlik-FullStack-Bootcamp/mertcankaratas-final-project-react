@@ -18,6 +18,7 @@ import ApartmentAdd from '../pages/ApartmentAdd'
 import DuesAdd from '../pages/DuesAdd'
 import InvoiceTypeAdd from '../pages/InvoiceTypeAdd'
 import UserAdd from '../pages/UserAdd'
+import PaymentForm from '../pages/CreditCard'
 export default function Dashboard() {
     return (
         <div>
@@ -36,6 +37,7 @@ export default function Dashboard() {
                             <Route exact path='/dues/add' element={<DuesAdd/>}></Route>
                             <Route exact path='/invoicetype/add' element={<InvoiceTypeAdd/>}></Route>
                             <Route exact path='/user/add' element={<UserAdd/>}></Route>
+                            <Route exact path='/creditcard' element={<PaymentForm/>}></Route>
                             
 
                         </Routes>
