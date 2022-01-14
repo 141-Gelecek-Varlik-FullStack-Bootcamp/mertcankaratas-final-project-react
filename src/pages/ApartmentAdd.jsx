@@ -1,11 +1,21 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, FormField, Label } from 'semantic-ui-react'
+import { Button, Label, Input,Divider } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
+import ApartmentService from '../services/apartmentService'
+import { toast } from "react-toastify"
 export default function ApartmentAdd() {
-    const initialValues = { userId: "", apartmentId: "" }
+    const initialValues = {
+        duesId: "", 
+        ownerId: "", 
+        tenantId: "", 
+        residentType: "", 
+        blockNo: "",
+        apartmentType:"",
 
+    }
+    let apartmentService = new ApartmentService();
     const schema = Yup.object({
         duesId: Yup.number().required("Aidat id zorunludur."),
         ownerId: Yup.number().required("Apartment id zorunludur."),
@@ -15,17 +25,28 @@ export default function ApartmentAdd() {
         floorNo: Yup.string().required("Kat numarası girmek zorunludur."),
         doorNo: Yup.string().required("Kapı numarası girmek zorunludur."),
         apartmentType: Yup.string().required("Daire Tipi girmek zorunludur."),
-        isBlank: Yup.bool().required("Dairenin doluluk durumunu girmek zorunludur."),
-        isActive: Yup.bool().required("Dairenin aktiflik durumunu girmek zorunludur.")
+    
         //insert user tokendan gelicek
     })
+    const onSubmit = (values, { resetForm }) => {
+
+        apartmentService.addApartment(values).then((result) => {
+            toast.success(result.data.message)
+        }).catch((result) => {
+            toast(result.response.data.message)
+        })
+        setTimeout(() => {
+            resetForm();
+        }, 3000)
+    }
+
+
     return (
         <div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
-                onSubmit={(values) =>
-                    console.log(values)}>
+                onSubmit={onSubmit}>
                 <Form className='ui form'>
                     <Label pointing="below" color='teal' ribbon >Aidat İd</Label>
                     <ApartmentTextInput name="duesId" placeholder="1" />
@@ -50,12 +71,16 @@ export default function ApartmentAdd() {
 
                     <Label pointing="below" ribbon>Apartman Tipi</Label>
                     <ApartmentTextInput name="apartmentType" placeholder="3+1" />
+                    <Divider />
 
-                    <Label pointing="below" ribbon>Daire Durumu</Label>
-                    <ApartmentTextInput name="isBlank" placeholder="boş 0  - dolu 1 " />
-
-                    <Label pointing="below" ribbon>Daire Aktiflik Durumu</Label>
-                    <ApartmentTextInput name="isActive" placeholder="aktif 1 - pasif 0" />
+                    {/* <Input  type='checkbox' className='hidden' label="Daire Aktiflik durumu" name="isBlank"></Input> */}
+                    <Input type="checkbox" className="hidden" name="isBlank" /><label> Daire Boşluk Durumu</label>
+                    <Divider />
+                    <Input type="checkbox" className="hidden" name="isActive"  /><label> Daire Aktif Durumu</label>
+                    <Divider />
+                    {/* <Input type="checkbox" name="isActive"></Input> */}
+                    {/* <Label pointing="below" ribbon>Daire Aktiflik Durumu</Label> */}
+                    {/* <ApartmentTextInput name="isActive" placeholder="pasif false - aktif true" /> */}
 
 
 

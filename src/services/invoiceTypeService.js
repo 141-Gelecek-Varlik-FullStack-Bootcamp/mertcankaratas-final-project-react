@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class invoiceTypeService{
+export default class InvoiceTypeService{
     addInvoice(values){
         return axios.post("https://localhost:44331/api/invoice/add",values);
     }

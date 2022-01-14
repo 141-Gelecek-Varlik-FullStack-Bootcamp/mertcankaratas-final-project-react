@@ -1,11 +1,13 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, FormField, Label } from 'semantic-ui-react'
+import { Button, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
+import UserService from"../services/userService"
+import { toast } from "react-toastify"
 export default function UserAdd() {
-    const initialValues = { userId: "", apartmentId: "" }
-
+    const initialValues = { identityNo: "", firstName: "", lastName: "", email: "", password: "", plaka: "" }
+    let userService = new UserService();
     const schema = Yup.object({
         identityNo: Yup.string().required("Kimlik numarası zorunludur.").min(11).max(11),
         firstName: Yup.string().required("Ad girmek zorunludur."),
@@ -16,13 +18,25 @@ export default function UserAdd() {
 
         //insert user tokendan gelicek
     })
+
+
+    const onSubmit = (values, { resetForm }) => {
+
+        userService.addUser(values).then((result) => {
+            toast.success(result.data.message)
+        }).catch((result) => {
+            toast(result.response.data.message)
+        })
+        setTimeout(() => {
+            resetForm();
+        }, 3000)
+    }
     return (
         <div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
-                onSubmit={(values) =>
-                    console.log(values)}>
+                onSubmit={onSubmit}>
                 <Form className='ui form'>
                     <Label pointing="below" color='teal' ribbon >Kimlik No</Label>
                     <ApartmentTextInput name="identityNo" placeholder="12345678901" />
@@ -42,7 +56,7 @@ export default function UserAdd() {
                     <Label pointing="below" ribbon>Plaka</Label>
                     <ApartmentTextInput name="plaka" placeholder="34mcn34" />
 
-                    
+
 
 
 

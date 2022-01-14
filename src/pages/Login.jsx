@@ -1,14 +1,14 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, FormField, Label } from 'semantic-ui-react'
+import { Button, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import AuthService from '../services/authService'
 import { toast} from "react-toastify"
 
 
 export default function Login() {
-    const initialValues = { userId: "", apartmentId: "" }
+    const initialValues = { email: "", password: "" }
     
     let authService = new AuthService();
     const schema = Yup.object({

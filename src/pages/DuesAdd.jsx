@@ -1,12 +1,12 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import {Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, FormField, Label } from 'semantic-ui-react'
+import { Button, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import DuesService from '../services/duesService'
 import { toast} from "react-toastify"
 export default function DuesAdd() {
-    const initialValues = {}
+    const initialValues = {amount:0}
     let duesService = new DuesService();
     const schema = Yup.object({
 
