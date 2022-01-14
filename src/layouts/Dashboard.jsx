@@ -21,13 +21,11 @@ import UserAdd from '../pages/UserAdd'
 export default function Dashboard() {
     return (
         <div>
-            <ToastContainer position='bottom-right'/>
-            <Grid>
+            <ToastContainer position='top-right'/>
+            <Grid className='main'>
                 <Grid.Row>
-                    <Grid.Column width={4}>
-                        <Categories />
-                    </Grid.Column>
-                    <Grid.Column width={12}>
+                  
+                    <Grid.Column width={16}>
                         <Routes>
                             <Route exact path='/' element={< PaymentList />}></Route>
                             <Route exact path='/paymentdetail/:id' element={< PaymentDetail />}></Route>

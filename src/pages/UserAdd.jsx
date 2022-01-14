@@ -1,7 +1,8 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import UserService from"../services/userService"
 import { toast } from "react-toastify"
@@ -32,37 +33,56 @@ export default function UserAdd() {
         }, 3000)
     }
     return (
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below" color='teal' ribbon >Kimlik No</Label>
+                    <Label color='teal'  size='large'>Kimlik No</Label>
+                    <Divider/>
                     <ApartmentTextInput name="identityNo" placeholder="12345678901" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Ad</Label>
+                    <Label color='teal'  size='large'>Ad</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="firstName" placeholder="Mertcan" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Soyad</Label>
+                    <Label color='teal'  size='large'>Soyad</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="lastName" placeholder="Karataş" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Email</Label>
+                    <Label color='teal'  size='large'>Email</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="email" placeholder="mertcan@mertcan.com" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Parola</Label>
+                    <Label color='teal'  size='large'>Parola</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="password" placeholder="4" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Plaka</Label>
+
+                    <Label color='teal'  size='large'>Plaka</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="plaka" placeholder="34mcn34" />
+                    <Divider/>
 
 
 
 
 
-                    <Button color='green' type="submit">Daire Ekle</Button>
+
+                    <Button color='teal'  size='large'>Kullanıcı Ekle</Button>
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }

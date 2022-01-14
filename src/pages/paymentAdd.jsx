@@ -1,12 +1,13 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import PaymentService from "../services/paymentService"
 import { toast } from "react-toastify"
 export default function PaymentAdd() {
-    const initialValues = { userId: "", apartmentId: "", invoiceId: "", amount: 0 }
+    const initialValues = { userId: "", apartmentId: "", invoiceId: "", amount: "" }
     let paymentService = new PaymentService();
     const schema = Yup.object({
         userId: Yup.number().required("Kullanıcı id zorunludur."),
@@ -28,26 +29,41 @@ export default function PaymentAdd() {
     }
 
     return (
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below" color='teal' ribbon >Kullanıcı İd</Label>
+                    <Label  color='teal'  size='large' >Kullanıcı İd</Label>
+                    <Divider/>
                     <ApartmentTextInput name="userId" placeholder="5" />
-                    <Label pointing="below" ribbon>Daire İd</Label>
+                    <Divider/>
+
+                    <Label color='teal'  size='large' >Daire İd</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="apartmentId" placeholder="6" />
-                    <Label pointing="below" ribbon>Fatura İd</Label>
+                    <Divider/>
+
+                    <Label color='teal'  size='large'>Fatura İd</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="invoiceId" placeholder=" 4" />
-                    <Label pointing="below" ribbon>Fatura Tutarı</Label>
+                    <Divider/>
+
+                    <Label color='teal'  size='large'>Fatura Tutarı</Label>
+                    <Divider/>
+
                     <ApartmentTextInput name="amount" placeholder="amount" />
+                    <Divider/>
+
 
 
 
                     <Button color='green' type="submit">Fatura Ekle</Button>
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }

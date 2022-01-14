@@ -1,7 +1,8 @@
-import { Form, Formik } from 'formik'
+import '../utilities/customCSS/ApartmentFormElement.css';
+import {Form,Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label, Input,Divider } from 'semantic-ui-react'
+import { Button, Label, Input,Divider, Container } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentService from '../services/apartmentService'
 import { toast } from "react-toastify"
@@ -17,8 +18,8 @@ export default function ApartmentAdd() {
     }
     let apartmentService = new ApartmentService();
     const schema = Yup.object({
-        duesId: Yup.number().required("Aidat id zorunludur."),
-        ownerId: Yup.number().required("Apartment id zorunludur."),
+        duesId: Yup.number().required("Aidat No zorunludur."),
+        ownerId: Yup.number().required("Apartment No zorunludur."),
         tenantId: Yup.number(),
         residentType: Yup.string().required("İkamet tipi girmek zorunludur."),
         blockNo: Yup.string().required("Blok adı girmek zorunludur."),
@@ -42,38 +43,50 @@ export default function ApartmentAdd() {
 
 
     return (
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below" color='teal' ribbon >Aidat İd</Label>
-                    <ApartmentTextInput name="duesId" placeholder="1" />
-
-                    <Label pointing="below" ribbon>Daire Sahip İd</Label>
+                    
+                  <Label color='teal' as="a" size='large'>Aidat Numarası</Label>
+                  <Divider />
+                    <ApartmentTextInput  name="duesId" placeholder="1" />
+                    <Divider/>
+                    <Label color='teal' size='large'>Daire Sahip Numarası</Label>
+                    <Divider/>
                     <ApartmentTextInput name="ownerId" placeholder="5" />
-
-                    <Label pointing="below" ribbon>Daire Kiracı İd</Label>
+                    
+                    <Divider />   
+                    <Label color='teal' size='large'>Daire Kiracı Numarası</Label>
+                    <Divider/>
                     <ApartmentTextInput name="tenantId" placeholder="4" />
-
-                    <Label pointing="below" ribbon>İkamet Tipi</Label>
+                    <Divider/>
+                    <Label color='teal' size='large'>İkamet Tipi</Label>
+                    <Divider/>
                     <ApartmentTextInput name="residentType" placeholder="Kiracı" />
-
-                    <Label pointing="below" ribbon>Apartman Blok Adı</Label>
+                    <Divider/>
+                    <Label color='teal' size='large'>Blok Adı</Label>
+                    <Divider/>
                     <ApartmentTextInput name="blockNo" placeholder="A" />
-
-                    <Label pointing="below" ribbon>Kat Numarası</Label>
+                    <Divider/>
+                    <Label color='teal' size='large'>Kat Numarası</Label>
+                    <Divider/>
                     <ApartmentTextInput name="floorNo" placeholder="4" />
-
-                    <Label pointing="below" ribbon>Kapı Numarası</Label>
+                    <Divider/>
+                    <Label color='teal' size='large'>Kapı Numarası</Label>
+                    <Divider/>
                     <ApartmentTextInput name="doorNo" placeholder="1" />
+                    <Divider/>
 
-                    <Label pointing="below" ribbon>Apartman Tipi</Label>
+                    <Label color='teal' size='large'>Apartman Tipi</Label>
+                    <Divider/>
                     <ApartmentTextInput name="apartmentType" placeholder="3+1" />
                     <Divider />
 
                     {/* <Input  type='checkbox' className='hidden' label="Daire Aktiflik durumu" name="isBlank"></Input> */}
+                    <Divider/>
                     <Input type="checkbox" className="hidden" name="isBlank" /><label> Daire Boşluk Durumu</label>
                     <Divider />
                     <Input type="checkbox" className="hidden" name="isActive"  /><label> Daire Aktif Durumu</label>
@@ -84,9 +97,9 @@ export default function ApartmentAdd() {
 
 
 
-                    <Button color='green' type="submit">Daire Ekle</Button>
+                    <Button color='teal' size='large'>Daire Ekle</Button>
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }

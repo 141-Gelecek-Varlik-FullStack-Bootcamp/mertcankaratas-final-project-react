@@ -5,7 +5,7 @@ import { Button, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import AuthService from '../services/authService'
 import { toast} from "react-toastify"
-
+import jwt_decode from "jwt-decode";
 
 export default function Login() {
     const initialValues = { email: "", password: "" }
@@ -22,7 +22,8 @@ export default function Login() {
 
         authService.login(values).then((result) => {
             //toast.success(result.data)
-             console.log(result.data)
+             console.log(result.data.token)
+             console.log(jwt_decode(result.data.token))
             
         }).catch((result) => {
             toast(result.response.data)

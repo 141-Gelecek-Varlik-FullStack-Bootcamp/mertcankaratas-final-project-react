@@ -1,7 +1,8 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import InvoiceTypeService from '../services/invoiceTypeService'
 import { toast} from "react-toastify"
@@ -9,7 +10,7 @@ export default function InvoiceTypeAdd() {
     const initialValues = { invoiceName: "", }
     let invoiceTypeService = new InvoiceTypeService();
     const schema = Yup.object({
-        invoiceName: Yup.string().required("Fatura tip adı girmek zorunludur."),
+        invoiceName: Yup.string().required("Fatura türü girmek zorunludur."),
         
      
         //insert user tokendan gelicek
@@ -27,22 +28,23 @@ export default function InvoiceTypeAdd() {
         }, 3000)
     }
     return (
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below"color='teal'ribbon >Fatura Tipi</Label>
+                    <Label color='teal'  size='large' >Fatura Tipi</Label>
+                    <Divider/>
                     <ApartmentTextInput name="invoiceName" placeholder="Elektrik" />
-
+                    <Divider/>
                    
 
 
 
-                    <Button color='green' type="submit">Fatura Tipi Ekle</Button>
+                    <Button color='teal'  size='large'>Fatura Tipi Ekle</Button>
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }

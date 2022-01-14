@@ -12,7 +12,7 @@ export default function PaymentList() {
 
     useEffect(()=>{
         let paymentService = new PaymentService()
-        paymentService.getPayments().then(result=>setPayments(result.data.data))
+        paymentService.getPayments().then(result=>setPayments(result?.data?.data))
     },[])
 
     const handleAddToCart=(payment)=>{

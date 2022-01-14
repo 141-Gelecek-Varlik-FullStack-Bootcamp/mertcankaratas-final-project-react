@@ -1,12 +1,13 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import {Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import DuesService from '../services/duesService'
 import { toast} from "react-toastify"
 export default function DuesAdd() {
-    const initialValues = {amount:0}
+    const initialValues = {amount:""}
     let duesService = new DuesService();
     const schema = Yup.object({
 
@@ -29,22 +30,23 @@ export default function DuesAdd() {
 
     return (
 
-        <div>
+        <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label pointing="below" color='teal' ribbon>Aidat Tutarı</Label>
+                    <Label color='teal' size='large' >Aidat Tutarı</Label>
+                    <Divider/>
                     <ApartmentTextInput name="amount" placeholder="125" />
+                    <Divider/>
 
 
 
 
-
-                    <Button color='green' type="submit">Aidat Ekle</Button>
+                    <Button color='teal' size='large'>Aidat Ekle</Button>
                 </Form>
             </Formik>
-        </div>
+        </Container>
     )
 }
