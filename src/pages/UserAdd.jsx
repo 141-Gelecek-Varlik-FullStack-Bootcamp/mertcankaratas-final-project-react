@@ -37,9 +37,11 @@ export default function UserAdd() {
     const onSubmit = (values, { resetForm }) => {
 
         userService.addUser(values).then((result) => {
-            toast.success(result.data.message)
+            toast.success(result?.data?.message)
         }).catch((result) => {
-            toast(result.response.data.message)
+            toast(result?.data?.message)
+            // toast("hataaa")
+
         })
         setTimeout(() => {
             resetForm();

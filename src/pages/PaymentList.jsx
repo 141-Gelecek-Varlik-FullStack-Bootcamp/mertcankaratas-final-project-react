@@ -1,7 +1,8 @@
+import '../utilities/customCSS/ApartmentFormElement.css';
 import React, { useState,useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
+import { Button, Container, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
 import PaymentService from '../services/paymentService'
 import { addToCart } from '../store/actions/cartActions'
 import { toast} from "react-toastify"
@@ -19,8 +20,10 @@ export default function PaymentList() {
         dispatch(addToCart(payment))
         toast.success(`${payment.paymentId} sepete eklendi`)
     }
+
+  
     return (
-        <div>
+        <Container className='formElement main'>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
@@ -29,6 +32,8 @@ export default function PaymentList() {
                         <Table.HeaderCell>Stok</Table.HeaderCell>
                         <Table.HeaderCell>Açıklama</Table.HeaderCell>
                         <Table.HeaderCell></Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -36,10 +41,12 @@ export default function PaymentList() {
                     {
                         payments.map(payment => (
                             <Table.Row key={payment.paymentId}>
-                                <Table.Cell><Link to={`/paymentdetail/${payment.paymentId}`}>{payment.userId}</Link></Table.Cell>
+                                <Table.Cell>{payment.userId}</Table.Cell>
                                 <Table.Cell>{payment.aparmentId}</Table.Cell>
                                 <Table.Cell>{payment.invoiceId}</Table.Cell>
                                 <Table.Cell>{payment.amount}</Table.Cell>
+                                <Table.Cell><Link to={`/paymentupdate/${payment.paymentId}`}><Button>Düzenle</Button></Link></Table.Cell>
+                                <Table.Cell><Button onClick={()=> handleAddToCart(payment)}>Sil</Button></Table.Cell>
                                 <Table.Cell><Button onClick={()=> handleAddToCart(payment)}>Sepete Ekle</Button></Table.Cell>
 
                              
@@ -70,6 +77,6 @@ export default function PaymentList() {
                     </Table.Row>
                 </Table.Footer>
             </Table>
-        </div>
+        </Container>
     )
 }

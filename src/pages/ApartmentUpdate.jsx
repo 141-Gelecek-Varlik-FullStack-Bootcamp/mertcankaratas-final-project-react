@@ -6,7 +6,7 @@ import { Button, Label, Input,Divider, Container } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentService from '../services/apartmentService'
 import { toast } from "react-toastify"
-export default function ApartmentAdd() {
+export default function ApartmentUpdate() {
     const initialValues = {
         duesId: "", 
         ownerId: "", 

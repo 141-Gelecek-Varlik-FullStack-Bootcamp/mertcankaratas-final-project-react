@@ -13,15 +13,15 @@ export default function PaymentAdd() {
         userId: Yup.number().required("Kullanıcı id zorunludur."),
         apartmentId: Yup.number().required("Apartment id zorunludur."),
         invoiceId: Yup.number().required("Fatura tipi girmek zorunludur."),
-        amount: Yup.number().required("Fatura Miktarı girmek zorunludur.")
+        amount: Yup.number().required("Fatura Miktarı girmek zorunludur.").min(0)
         //insert user tokendan gelicek
     })
     const onSubmit = (values, { resetForm }) => {
 
         paymentService.addPayment(values).then((result) => {
-            toast.success(result.data.message)
+            toast.success(result?.data?.message)
         }).catch((result) => {
-            toast(result.response.data.message)
+            toast(result?.data?.message)
         })
         setTimeout(() => {
             resetForm();
@@ -61,7 +61,7 @@ export default function PaymentAdd() {
 
 
 
-                    <Button color='green' type="submit">Fatura Ekle</Button>
+                    <Button color='teal' size='large' type="submit">Fatura Ekle</Button>
                 </Form>
             </Formik>
         </Container>

@@ -24,7 +24,7 @@ export default function Login() {
 
         authService.login(values).then((result) => {
             //toast.success(result.data)
-            console.log(result.data.token)
+            console.log(result?.data?.token)
             {
                 let tokenInfo = [jwt_decode(result.data.token)]
                 console.log(...tokenInfo)
@@ -33,7 +33,7 @@ export default function Login() {
 
 
         }).catch((result) => {
-            toast(result.data)
+            toast(result?.data)
         })
         setTimeout(() => {
             resetForm();

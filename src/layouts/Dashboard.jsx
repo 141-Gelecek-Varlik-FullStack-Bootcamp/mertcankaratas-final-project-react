@@ -1,6 +1,7 @@
 import React from 'react'
+import '../utilities/customCSS/ApartmentFormElement.css';
 import PaymentList from '../pages/PaymentList'
-import { Grid, GridColumn, GridRow } from 'semantic-ui-react'
+import { Grid, GridColumn, GridRow,Container } from 'semantic-ui-react'
 import Categories from './Categories'
 import Navi from './Navi'
 import {
@@ -21,7 +22,7 @@ import UserAdd from '../pages/UserAdd'
 import PaymentForm from '../pages/CreditCard'
 export default function Dashboard() {
     return (
-        <div>
+        <Container>
             <ToastContainer position='top-right'/>
             <Grid className='main'>
                 <Grid.Row>
@@ -29,7 +30,7 @@ export default function Dashboard() {
                     <Grid.Column width={16}>
                         <Routes>
                             <Route exact path='/' element={< PaymentList />}></Route>
-                            <Route exact path='/paymentdetail/:id' element={< PaymentDetail />}></Route>
+                            <Route exact path='/paymentupdate/:id' element={< PaymentDetail />}></Route>
                             <Route exact path='/login' element={< Login />}></Route>
                             <Route exact path='/payment/add' element={< PaymentAdd />}></Route>
                             <Route exact path='/apartment/add' element={<ApartmentAdd />}></Route>
@@ -48,6 +49,6 @@ export default function Dashboard() {
             </Grid>
 
 
-        </div>
+        </Container>
     )
 }

@@ -19,9 +19,9 @@ export default function InvoiceTypeAdd() {
     const onSubmit = (values, { resetForm }) => {
 
         invoiceTypeService.addInvoice(values).then((result) => {
-            toast.success(result.data.message)
+            toast.success(result?.data?.message)
         }).catch((result) => {
-            toast(result.response.data.message)
+            toast(result?.data?.message)
         })
         setTimeout(() => {
             resetForm();
