@@ -1,22 +1,40 @@
 import '../utilities/customCSS/ApartmentFormElement.css';
 import {Form,Formik } from 'formik'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import * as Yup from "yup"
 import { Button, Label, Input,Divider, Container } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentService from '../services/apartmentService'
 import { toast } from "react-toastify"
 export default function ApartmentUpdate() {
+    let { id } = useParams()
+    const [apartment, setApartment] = useState({})
+    let apartmentService = new ApartmentService();
+    const loadPost = async () => {
+        await apartmentService.getById(id).then(result => setApartment(result.data.data))
+    }
+    useEffect(() => {
+
+
+
+        loadPost();
+    }, [])
+   
     const initialValues = {
-        duesId: "", 
-        ownerId: "", 
-        tenantId: "", 
-        residentType: "", 
-        blockNo: "",
-        apartmentType:"",
+        apartmentId:`${apartment.apartmentId}`,
+        duesId: `${apartment.duesId}`, 
+        ownerId: `${apartment.ownerId}`, 
+        tenantId: `${apartment.tenantId}`, 
+        residentType: `${apartment.residentType}`, 
+        blockNo: `${apartment.blockNo}`,
+        floorNo:`${apartment.floorNo}`,
+        doorNo:`${apartment.doorNo}`,
+        apartmentType:`${apartment.apartmentType}`,
+        
 
     }
-    let apartmentService = new ApartmentService();
+    
     const schema = Yup.object({
         duesId: Yup.number().required("Aidat No zorunludur."),
         ownerId: Yup.number().required("Apartment No zorunludur."),
@@ -31,22 +49,23 @@ export default function ApartmentUpdate() {
     })
     const onSubmit = (values, { resetForm }) => {
 
-        apartmentService.addApartment(values).then((result) => {
+        apartmentService.updateApartment(values).then((result) => {
             toast.success(result?.data?.message)
         }).catch((result) => {
             toast(result?.data?.message)
         })
-        setTimeout(() => {
-            resetForm();
-        }, 3000)
+        // setTimeout(() => {
+        //     resetForm();
+        // }, 3000)
     }
 
-
+   
     return (
         <Container className='formElement main'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
+                enableReinitialize={true}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
                     
@@ -85,19 +104,19 @@ export default function ApartmentUpdate() {
                     <ApartmentTextInput name="apartmentType" placeholder="3+1" />
                     <Divider />
 
-                    {/* <Input  type='checkbox' className='hidden' label="Daire Aktiflik durumu" name="isBlank"></Input> */}
+                   
                     <Divider/>
-                    <Input type="checkbox" className="hidden" name="isBlank" /><label> Daire Boşluk Durumu</label>
+                    <Input type="checkbox" defaultChecked={apartment.isBlank} className="hidden" 
+                     name="isBlank" /><label> Daire Boşluk Durumu</label>
                     <Divider />
-                    <Input type="checkbox" className="hidden" name="isActive"  /><label> Daire Aktif Durumu</label>
+                    <Input type="checkbox" className="hidden" defaultChecked={apartment.isActive}  name="isActive"  /><label> Daire Aktif Durumu</label>
                     <Divider />
-                    {/* <Input type="checkbox" name="isActive"></Input> */}
-                    {/* <Label pointing="below" ribbon>Daire Aktiflik Durumu</Label> */}
-                    {/* <ApartmentTextInput name="isActive" placeholder="pasif false - aktif true" /> */}
+                    
+                 
 
 
 
-                    <Button color='teal' size='large'>Daire Ekle</Button>
+                    <Button color='teal' size='large'>Daire Güncelle</Button>
                 </Form>
             </Formik>
         </Container>

@@ -2,7 +2,7 @@ import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button, FormInput, Grid, Header, Image, Message, Segment,Label, Container, Divider } from 'semantic-ui-react'
+import { Button,Label, Container, Divider } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentPasswordInput from '../utilities/customFormControls/ApartmentPasswordInput';
 import AuthService from '../services/authService'

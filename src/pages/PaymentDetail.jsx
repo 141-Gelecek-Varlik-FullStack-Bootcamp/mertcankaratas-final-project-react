@@ -18,7 +18,7 @@ export default function PaymentDetail() {
         apartmentId: Yup.number().required("Apartment id zorunludur."),
         invoiceId: Yup.number().required("Fatura tipi girmek zorunludur."),
         amount: Yup.number().required("Fatura Miktarı girmek zorunludur.").min(0)
-        //insert user tokendan gelicek
+        
     })
 
     let paymentService = new PaymentService();

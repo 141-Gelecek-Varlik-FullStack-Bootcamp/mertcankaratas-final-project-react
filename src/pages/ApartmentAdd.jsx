@@ -85,15 +85,13 @@ export default function ApartmentAdd() {
                     <ApartmentTextInput name="apartmentType" placeholder="3+1" />
                     <Divider />
 
-                    {/* <Input  type='checkbox' className='hidden' label="Daire Aktiflik durumu" name="isBlank"></Input> */}
+          
                     <Divider/>
                     <Input type="checkbox" className="hidden" name="isBlank" /><label> Daire Boşluk Durumu</label>
                     <Divider />
                     <Input type="checkbox" className="hidden" name="isActive"  /><label> Daire Aktif Durumu</label>
                     <Divider />
-                    {/* <Input type="checkbox" name="isActive"></Input> */}
-                    {/* <Label pointing="below" ribbon>Daire Aktiflik Durumu</Label> */}
-                    {/* <ApartmentTextInput name="isActive" placeholder="pasif false - aktif true" /> */}
+                  
 
 
 

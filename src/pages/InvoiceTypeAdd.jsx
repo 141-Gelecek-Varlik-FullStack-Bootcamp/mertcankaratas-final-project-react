@@ -13,7 +13,7 @@ export default function InvoiceTypeAdd() {
         invoiceName: Yup.string().required("Fatura türü girmek zorunludur."),
         
      
-        //insert user tokendan gelicek
+        
     })
 
     const onSubmit = (values, { resetForm }) => {

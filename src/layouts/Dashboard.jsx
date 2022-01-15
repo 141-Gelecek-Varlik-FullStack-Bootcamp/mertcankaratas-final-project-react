@@ -20,6 +20,7 @@ import DuesAdd from '../pages/DuesAdd'
 import InvoiceTypeAdd from '../pages/InvoiceTypeAdd'
 import UserAdd from '../pages/UserAdd'
 import PaymentForm from '../pages/CreditCard'
+import ApartmentUpdate from '../pages/ApartmentUpdate';
 export default function Dashboard() {
     return (
         <Container>
@@ -34,6 +35,7 @@ export default function Dashboard() {
                             <Route exact path='/login' element={< Login />}></Route>
                             <Route exact path='/payment/add' element={< PaymentAdd />}></Route>
                             <Route exact path='/apartment/add' element={<ApartmentAdd />}></Route>
+                            <Route exact path='/apartmentupdate/:id' element={<ApartmentUpdate />}></Route>
 
                             <Route exact path='/dues/add' element={<DuesAdd/>}></Route>
                             <Route exact path='/invoicetype/add' element={<InvoiceTypeAdd/>}></Route>
