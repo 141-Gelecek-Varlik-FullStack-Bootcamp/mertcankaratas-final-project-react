@@ -2,7 +2,11 @@ import '../utilities/customCSS/ApartmentFormElement.css';
 import React from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
-import { Container, Divider } from 'semantic-ui-react';
+import { Container, Divider, Label,Button } from 'semantic-ui-react';
+import * as Yup from "yup"
+import { Form, Formik } from 'formik'
+import { toast } from "react-toastify"
+import CreditCardService from '../services/creditCardService';
 export default class PaymentForm extends React.Component {
     state = {
         cvc: '',
@@ -11,6 +15,11 @@ export default class PaymentForm extends React.Component {
         name: '',
         number: '',
     };
+    
+
+   
+
+
 
     handleInputFocus = (e) => {
         this.setState({ focus: e.target.name });
@@ -23,6 +32,35 @@ export default class PaymentForm extends React.Component {
     }
 
     render() {
+        let creditCardService = new CreditCardService();
+        const initialValues = {
+            cvc: '',
+            expiry: '',
+            focus: '',
+            name: '',
+            cardNumber: '',
+            totalPrice:55
+    
+        }
+
+        const schema = Yup.object({
+            cardNumber: Yup.number().required("Kart Numarası Zorunludur.")
+            .min(16).max(16),
+            
+           
+        
+        
+        })
+        const onSubmit = (values, { resetForm }) => {
+            console.log(values);
+            creditCardService.payment(values).then((result) => {
+                toast.success(result?.data?.message)
+            }).catch((result) => {
+                toast(result?.data?.message)
+            })
+           
+        }
+
         return (
             <div className=' main'>
                 <div id="PaymentForm" >
@@ -34,47 +72,66 @@ export default class PaymentForm extends React.Component {
                         name={this.state.name}
                         number={this.state.number}
                     />
-                    <form>
-                       
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={schema}
+                        onSubmit={async ()=> console.log("test")}>
+                        <Form className='ui form '>
+                        
                             <br />
+                            <Label>Kart Numarası</Label>
+                            <br/>
                             <input
                                 type="tel"
                                 name="number"
-                                placeholder="Card Number"
+                                maxLength={16}
+                                placeholder="Kart Numarası"
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
                             <br />
                             <br />
-
+                            <Label>Kart Sahibi</Label>
+                            <br/>
                             <input
                                 type="tel"
                                 name="name"
-                                placeholder="Card Number"
+                                placeholder="Kart Sahibi"
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
                             <br />
                             <br />
+                            <Label>Son Kullanma Tarihi</Label>
+                            <br/>
                             <input
                                 type="tel"
                                 name="expiry"
-                                placeholder="Card Number"
+                                maxLength={4}
+                                placeholder="Son Kullanma Tarihi"
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
 
                             <br />
                             <br />
+                            <Label >CVC</Label>
                             <input
                                 type="tel"
                                 name="cvc"
-                                placeholder="Card Number"
+                                maxLength={3}
+                                placeholder="Cvc2"
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
-                       
-                    </form>
+                            <Divider/>
+                            <Button type="button" color='teal' size='large'onClick={onSubmit} ></Button>
+
+                        </Form>
+
+
+
+                    </Formik>
 
                 </div>
             </div >

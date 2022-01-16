@@ -36,9 +36,9 @@ export default function DuesAdd() {
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label color='teal' size='large' >Aidat Tutarı</Label>
+                    <Label color='teal' basic size='large' >Aidat Tutarı</Label>
                     <Divider/>
-                    <ApartmentTextInput name="amount" placeholder="125" />
+                    <ApartmentTextInput icon="info" name="amount" placeholder="125" />
                     <Divider/>
 
 

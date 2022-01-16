@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 export default function Navi() {
     const { cartItems } = useSelector(state => state.cart)
-    const [isAuthenticated, setIsAuthenticated] = useState(true)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    window.isAuthenticated=isAuthenticated;
     const navigate = useNavigate()
     function handleSignOut() {
         setIsAuthenticated(false);
-        navigate('/')
+        navigate('/login')
     }
 
     function handleSignIn() {
@@ -22,19 +23,19 @@ export default function Navi() {
             <Menu inverted size='large' fixed='top'>
                 <Container>
                     <Menu.Item
-                        name='home'
+                        name='Anasayfa'
 
                     />
                     <Menu.Item
-                        name='messages'
+                        name='Mesajlar'
 
                     />
                     <Menu.Item>
-                        <Dropdown item text='More'>
+                        <Dropdown item text='Admin'>
                             <Dropdown.Menu>
-                                <Dropdown.Item icon='edit' text='Edit Profile' />
-                                <Dropdown.Item icon='globe' text='Choose Language' />
-                                <Dropdown.Item icon='settings' text='Account Settings' />
+                                <Dropdown.Item icon='edit' text='Kullanıcı İşlemleri' />
+                                <Dropdown.Item icon='money' text='Fatura İşlemleri' />
+                                <Dropdown.Item icon='settings' text='Apartman İşlemleri' />
                             </Dropdown.Menu>
                         </Dropdown>
 

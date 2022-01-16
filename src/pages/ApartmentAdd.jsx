@@ -50,39 +50,39 @@ export default function ApartmentAdd() {
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
                     
-                  <Label color='teal'  size='large'>Aidat Numarası</Label>
+                  <Label color='teal'  basic size='large'>Aidat Numarası</Label>
                   <Divider />
-                    <ApartmentTextInput  name="duesId" placeholder="1" />
+                    <ApartmentTextInput icon="user" name="duesId" placeholder="1" />
                     <Divider/>
-                    <Label color='teal' size='large'>Daire Sahip Numarası</Label>
+                    <Label color='teal' basic size='large'>Daire Sahip Numarası</Label>
                     <Divider/>
-                    <ApartmentTextInput  name="ownerId" placeholder="5" />
+                    <ApartmentTextInput  icon="user" name="ownerId" placeholder="5" />
                     
                     <Divider />   
-                    <Label color='teal' size='large'>Daire Kiracı Numarası</Label>
+                    <Label color='teal' basic size='large'>Daire Kiracı Numarası</Label>
                     <Divider/>
-                    <ApartmentTextInput name="tenantId" placeholder="4" />
+                    <ApartmentTextInput icon="user" name="tenantId" placeholder="4" />
                     <Divider/>
-                    <Label color='teal' size='large'>İkamet Tipi</Label>
+                    <Label color='teal' basic  size='large'>İkamet Tipi</Label>
                     <Divider/>
-                    <ApartmentTextInput name="residentType" placeholder="Kiracı" />
+                    <ApartmentTextInput icon="home" name="residentType" placeholder="Kiracı" />
                     <Divider/>
-                    <Label color='teal' size='large'>Blok Adı</Label>
+                    <Label color='teal' basic size='large'>Blok Adı</Label>
                     <Divider/>
-                    <ApartmentTextInput name="blockNo" placeholder="A" />
+                    <ApartmentTextInput icon="home"  name="blockNo" placeholder="A" />
                     <Divider/>
-                    <Label color='teal' size='large'>Kat Numarası</Label>
+                    <Label color='teal' basic size='large'>Kat Numarası</Label>
                     <Divider/>
-                    <ApartmentTextInput name="floorNo" placeholder="4" />
+                    <ApartmentTextInput  icon="home"  name="floorNo" placeholder="4" />
                     <Divider/>
-                    <Label color='teal' size='large'>Kapı Numarası</Label>
+                    <Label color='teal' basic size='large'>Kapı Numarası</Label>
                     <Divider/>
-                    <ApartmentTextInput name="doorNo" placeholder="1" />
+                    <ApartmentTextInput icon="home"  name="doorNo" placeholder="1" />
                     <Divider/>
 
-                    <Label color='teal' size='large'>Apartman Tipi</Label>
+                    <Label color='teal' basic size='large'>Apartman Tipi</Label>
                     <Divider/>
-                    <ApartmentTextInput name="apartmentType" placeholder="3+1" />
+                    <ApartmentTextInput icon="home" name="apartmentType" placeholder="3+1" />
                     <Divider />
 
           
@@ -92,7 +92,6 @@ export default function ApartmentAdd() {
                     <Input type="checkbox" className="hidden" name="isActive"  /><label> Daire Aktif Durumu</label>
                     <Divider />
                   
-
 
 
                     <Button color='teal' size='large'>Daire Ekle</Button>

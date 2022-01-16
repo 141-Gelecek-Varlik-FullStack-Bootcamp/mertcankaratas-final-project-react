@@ -2,7 +2,7 @@ import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { Button,Label, Container, Divider } from 'semantic-ui-react'
+import { Button,Label, Container, Divider,Image } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentPasswordInput from '../utilities/customFormControls/ApartmentPasswordInput';
 import AuthService from '../services/authService'
@@ -24,6 +24,7 @@ export default function Login() {
 
         authService.login(values).then((result) => {
             //toast.success(result.data)
+            window.isAuthenticated=true;
             console.log(result?.data?.token)
             {
                 let tokenInfo = [jwt_decode(result.data.token)]
@@ -45,21 +46,24 @@ export default function Login() {
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={onSubmit}>
+                    
                 <Form className='ui form'>
-                    <Label color='teal'  size='large'>Email</Label>
+                <Image spaced="right" size='medium' src="https://www.paraanaliz.com/wp-content/uploads/2021/09/gelecek-varlik.png"/>
                     <Divider/>
-                    <ApartmentTextInput icon='user' name="email" placeholder="mertcan@mertcan.com" />
+                    <Label color='teal'basic  size='large'>Email</Label>
+                    <Divider/>
+                    <ApartmentTextInput icon='user' name="email" placeholder="user@user.com" />
                     <Divider/>
 
-                    <Label color='teal'  size='large'>Parola</Label>
+                    <Label color='teal' basic size='large'>Parola</Label>
                     <Divider/>
 
-                    <ApartmentPasswordInput name="password" placeholder="*************" />
+                    <ApartmentPasswordInput name="password" placeholder="*****" />
                     <Divider/>
 
                    
 
-                        <Button color='green' type="submit">Login</Button>
+                        <Button color='teal' type="submit">Login</Button>
                         
                 </Form>
             </Formik>

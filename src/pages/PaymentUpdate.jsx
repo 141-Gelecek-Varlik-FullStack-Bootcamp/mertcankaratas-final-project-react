@@ -76,33 +76,33 @@ export default function PaymentUpdate() {
             >
 
                 <Form className='ui form'>
-                    <Label color='teal' size='large' >Kullanıcı İd</Label>
-                    <Divider />
-                    <ApartmentTextInput name="userId" placeholder="5" />
-                    <Divider />
+                <Label  color='teal' basic size='large' >Kullanıcı No</Label>
+                    <Divider/>
+                    <ApartmentTextInput icon="user" name="userId" placeholder="5" />
+                    <Divider/>
 
-                    <Label color='teal' size='large' >Daire İd</Label>
-                    <Divider />
+                    <Label color='teal' basic size='large' >Daire No</Label>
+                    <Divider/>
 
-                    <ApartmentTextInput name="apartmentId" placeholder="6" />
-                    <Divider />
+                    <ApartmentTextInput icon="home" name="apartmentId" placeholder="6" />
+                    <Divider/>
 
-                    <Label color='teal' size='large'>Fatura İd</Label>
-                    <Divider />
+                    <Label color='teal'basic  size='large'>Fatura No</Label>
+                    <Divider/>
 
-                    <ApartmentTextInput name="invoiceId" placeholder=" 4" />
-                    <Divider />
+                    <ApartmentTextInput icon="info" name="invoiceId" placeholder=" 4" />
+                    <Divider/>
 
-                    <Label color='teal' size='large'>Fatura Tutarı</Label>
-                    <Divider />
+                    <Label color='teal'  basic size='large'>Fatura Tutarı</Label>
+                    <Divider/>
 
-                    <ApartmentTextInput name="amount" placeholder="amount" />
-                    <Divider />
-
-
+                    <ApartmentTextInput icon="money" name="amount" placeholder="amount" />
+                    <Divider/>
 
 
-                    <Button color='teal' size='large' type="submit" >Fatura Güncelle</Button>
+
+
+                    <Button color='teal' data-tooltip="Faturanızı Güncelle" data-position="bottom left"  size='large' type="submit" >Fatura Güncelle</Button>
                 </Form>
             </Formik>
         </Container>

@@ -58,40 +58,40 @@ export default function UserAdd() {
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label color='teal' size='large'>Kimlik No</Label>
+                    <Label color='teal' basic size='large'>Kimlik No</Label>
                     <Divider />
-                    <ApartmentTextInput name="identityNo" placeholder="12345678901" />
-                    <Divider />
-
-                    <Label color='teal' size='large'>Ad</Label>
+                    <ApartmentTextInput icon="user" name="identityNo" placeholder="12345678901" />
                     <Divider />
 
-                    <ApartmentTextInput name="firstName" placeholder="Mertcan" />
+                    <Label color='teal' basic size='large'>Ad</Label>
                     <Divider />
 
-                    <Label color='teal' size='large'>Soyad</Label>
+                    <ApartmentTextInput icon="user" name="firstName" placeholder="Mertcan" />
                     <Divider />
 
-                    <ApartmentTextInput name="lastName" placeholder="Karataş" />
+                    <Label color='teal' basic size='large'>Soyad</Label>
                     <Divider />
 
-                    <Label color='teal' size='large'>Email</Label>
+                    <ApartmentTextInput icon="user" name="lastName" placeholder="Karataş" />
                     <Divider />
 
-                    <ApartmentTextInput name="email" placeholder="mertcan@mertcan.com" />
+                    <Label color='teal' basic size='large'>Email</Label>
                     <Divider />
 
-                    <Label color='teal' size='large'>Parola</Label>
+                    <ApartmentTextInput icon="mail" name="email" placeholder="mertcan@mertcan.com" />
+                    <Divider />
+
+                    <Label color='teal' basic size='large'>Parola</Label>
                     <Divider />
 
                     <ApartmentPasswordInput disabled={true} name="password" placeholder="*************" />
                     <Divider />
 
 
-                    <Label color='teal' size='large'>Plaka</Label>
+                    <Label color='teal' basic size='large'>Plaka</Label>
                     <Divider />
 
-                    <ApartmentTextInput name="plaka" placeholder="34mcn34" />
+                    <ApartmentTextInput  icon="car" name="plaka" placeholder="34mcn34" />
                     <Divider />
 
 

@@ -1,9 +1,9 @@
 import '../utilities/customCSS/ApartmentFormElement.css';
 import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Container, Icon, Menu, Table,  TableHeader } from 'semantic-ui-react'
+import { Button, Container, Icon, Table } from 'semantic-ui-react'
 import UserService from '../services/userService';
-import { toast} from "react-toastify"
+
 export default function UserList() {
 
     
@@ -48,9 +48,9 @@ export default function UserList() {
                                 <Table.Cell>{user?.firstName}</Table.Cell>
                                 <Table.Cell>{user?.lastName}</Table.Cell>
                                 <Table.Cell>{user?.email}</Table.Cell>
-                                <Table.Cell>{user?.plaka =="" ? <Icon name='times'/>:user?.plaka}</Table.Cell>
-                                <Table.Cell>{user.isActive == false ? <Icon name='times'/>:<Icon name='check'/>}</Table.Cell>
-                                <Table.Cell>{user.isDeleted == false ? <Icon name='times'/>:<Icon name='check'/>}</Table.Cell>
+                                <Table.Cell>{user?.plaka ==="" ? <Icon name='times'/>:user?.plaka}</Table.Cell>
+                                <Table.Cell>{user.isActive === false ? <Icon name='times'/>:<Icon name='check'/>}</Table.Cell>
+                                <Table.Cell>{user.isDeleted === false ? <Icon name='times'/>:<Icon name='check'/>}</Table.Cell>
                                 
                                 
                                 <Table.Cell><Link to={`/user/update/${user.userId}`}><Button>Düzenle</Button></Link></Table.Cell>
@@ -66,24 +66,7 @@ export default function UserList() {
 
                 </Table.Body>
 
-                <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='3'>
-                            <Menu floated='right' pagination>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron left' />
-                                </Menu.Item>
-                                <Menu.Item as='a'>1</Menu.Item>
-                                <Menu.Item as='a'>2</Menu.Item>
-                                <Menu.Item as='a'>3</Menu.Item>
-                                <Menu.Item as='a'>4</Menu.Item>
-                                <Menu.Item as='a' icon>
-                                    <Icon name='chevron right' />
-                                </Menu.Item>
-                            </Menu>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer>
+               
             </Table>
         </Container>
     )

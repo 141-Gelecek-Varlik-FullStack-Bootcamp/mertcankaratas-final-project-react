@@ -10,9 +10,9 @@ export default function PaymentAdd() {
     const initialValues = { userId: "", apartmentId: "", invoiceId: "", amount: "" }
     let paymentService = new PaymentService();
     const schema = Yup.object({
-        userId: Yup.number().required("Kullanıcı id zorunludur."),
-        apartmentId: Yup.number().required("Apartment id zorunludur."),
-        invoiceId: Yup.number().required("Fatura tipi girmek zorunludur."),
+        userId: Yup.number().required("Kullanıcı No zorunludur."),
+        apartmentId: Yup.number().required("Apartman No zorunludur."),
+        invoiceId: Yup.number().required("Fatura No girmek zorunludur."),
         amount: Yup.number().required("Fatura Miktarı girmek zorunludur.").min(0)
         //insert user tokendan gelicek
     })
@@ -35,27 +35,27 @@ export default function PaymentAdd() {
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label  color='teal'  size='large' >Kullanıcı İd</Label>
+                    <Label  color='teal' basic size='large' >Kullanıcı No</Label>
                     <Divider/>
-                    <ApartmentTextInput name="userId" placeholder="5" />
-                    <Divider/>
-
-                    <Label color='teal'  size='large' >Daire İd</Label>
+                    <ApartmentTextInput icon="user" name="userId" placeholder="5" />
                     <Divider/>
 
-                    <ApartmentTextInput name="apartmentId" placeholder="6" />
+                    <Label color='teal' basic size='large' >Daire No</Label>
                     <Divider/>
 
-                    <Label color='teal'  size='large'>Fatura İd</Label>
+                    <ApartmentTextInput icon="home" name="apartmentId" placeholder="6" />
                     <Divider/>
 
-                    <ApartmentTextInput name="invoiceId" placeholder=" 4" />
+                    <Label color='teal'basic  size='large'>Fatura No</Label>
                     <Divider/>
 
-                    <Label color='teal'  size='large'>Fatura Tutarı</Label>
+                    <ApartmentTextInput icon="info" name="invoiceId" placeholder=" 4" />
                     <Divider/>
 
-                    <ApartmentTextInput name="amount" placeholder="amount" />
+                    <Label color='teal'  basic size='large'>Fatura Tutarı</Label>
+                    <Divider/>
+
+                    <ApartmentTextInput icon="money" name="amount" placeholder="amount" />
                     <Divider/>
 
 

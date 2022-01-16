@@ -1,14 +1,13 @@
 import React from 'react'
 import '../utilities/customCSS/ApartmentFormElement.css';
 import PaymentList from '../pages/PaymentList'
-import { Grid, GridColumn, GridRow,Container } from 'semantic-ui-react'
-import Categories from './Categories'
-import Navi from './Navi'
+import { Grid,Container } from 'semantic-ui-react'
+
 import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+   
 } from 'react-router-dom';
 import PaymentDetail from '../pages/PaymentDetail'
 import Login from '../pages/Login'
@@ -26,7 +25,9 @@ import PaymentUpdate from '../pages/PaymentUpdate';
 import ApartmentList from '../pages/ApartmentList';
 import UserList from '../pages/UserList';
 import MailList from '../pages/MailList';
+import NotFound from '../pages/NotFound';
 export default function Dashboard() {
+    
     return (
         <Container>
             <ToastContainer position='top-right'/>
@@ -34,7 +35,9 @@ export default function Dashboard() {
                 <Grid.Row>
                   
                     <Grid.Column width={16}>
+                        
                         <Routes>
+                            
                             <Route exact path='/' element={< PaymentList />}></Route>
                             <Route exact path='/paymentupdate/:id' element={< PaymentDetail />}></Route>
                             <Route exact path='/login' element={< Login />}></Route>
@@ -53,7 +56,8 @@ export default function Dashboard() {
                             
                             <Route exact path='/creditcard' element={<PaymentForm/>}></Route>
                             <Route exact path='/maillist' element={<MailList/>}></Route>
-
+                            <Route exact path='*' element={<NotFound/>}></Route>
+                            
                         </Routes>
 
 

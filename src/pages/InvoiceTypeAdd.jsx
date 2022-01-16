@@ -34,9 +34,9 @@ export default function InvoiceTypeAdd() {
                 validationSchema={schema}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
-                    <Label color='teal'  size='large' >Fatura Tipi</Label>
+                    <Label color='teal' basic  size='large' >Fatura Tipi</Label>
                     <Divider/>
-                    <ApartmentTextInput name="invoiceName" placeholder="Elektrik" />
+                    <ApartmentTextInput icon="info" name="invoiceName" placeholder="Elektrik" />
                     <Divider/>
                    
 
