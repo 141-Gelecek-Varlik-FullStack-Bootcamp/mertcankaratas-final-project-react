@@ -27,10 +27,10 @@ export default function PaymentList() {
             <Table padded>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>PaymentId</Table.HeaderCell>
-                        <Table.HeaderCell>Fiyatı</Table.HeaderCell>
-                        <Table.HeaderCell>Stok</Table.HeaderCell>
-                        <Table.HeaderCell>Açıklama</Table.HeaderCell>
+                        <Table.HeaderCell>Kullanıcı No</Table.HeaderCell>
+                        <Table.HeaderCell>Apartman No </Table.HeaderCell>
+                        <Table.HeaderCell>Fatura No</Table.HeaderCell>
+                        <Table.HeaderCell>Tutar</Table.HeaderCell>
                         <Table.HeaderCell></Table.HeaderCell>
                         <Table.HeaderCell></Table.HeaderCell>
                         <Table.HeaderCell></Table.HeaderCell>
