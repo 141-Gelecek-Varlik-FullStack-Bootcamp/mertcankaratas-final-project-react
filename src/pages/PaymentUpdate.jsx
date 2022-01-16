@@ -10,7 +10,7 @@ import { toast } from "react-toastify"
 
 export default function PaymentUpdate() {
 
-    const [payment, setPayment] = useState({})
+    const [payments, setPayments] = useState({})
     let { id } = useParams()
 
     const schema = Yup.object({
@@ -24,7 +24,7 @@ export default function PaymentUpdate() {
     let paymentService = new PaymentService();
 
     const loadPost = async () => {
-        await paymentService.getById(id).then(result => setPayment(result.data.data))
+        await paymentService.getById(id).then(result => setPayments(result.data.data))
     }
     useEffect(() => {
 
@@ -37,11 +37,11 @@ export default function PaymentUpdate() {
    
 
     const initialValues = {
-        paymentId: `${payment.paymentId}`,
-        userId: `${payment.userId}`,
-        apartmentId: `${payment.apartmentId}`,
-        invoiceId: `${payment.invoiceId}`,
-        amount: `${payment.amount}`,
+        paymentId: `${payments.paymentId}`,
+        userId: `${payments.userId}`,
+        apartmentId: `${payments.apartmentId}`,
+        invoiceId: `${payments.invoiceId}`,
+        amount: `${payments.amount}`,
         // successPayment:`${payment.successPayment}`,
         // billingDate:`${payment.billingDate}`,
       

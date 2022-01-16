@@ -10,6 +10,11 @@
     margin-top:3em;
   }
 
+.txtAlign{
+    text-align: center;
+}
+
+
 
 .lblLeft{
     float: left;

@@ -1,27 +1,37 @@
 import '../utilities/customCSS/ApartmentFormElement.css';
 import { Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import * as Yup from "yup"
 import { Button, Container, Divider, Label } from 'semantic-ui-react'
 import ApartmentTextInput from '../utilities/customFormControls/ApartmentTextInput'
 import ApartmentPasswordInput from '../utilities/customFormControls/ApartmentPasswordInput';
 import UserService from "../services/userService"
 import { toast } from "react-toastify"
-export default function UserAdd() {
-    function genPassword() {
-        var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let passwordLength = 8;
-        let password = "";
-        for (var i = 0; i <= passwordLength; i++) {
-            var randomNumber = Math.floor(Math.random() * chars.length);
-            password += chars.substring(randomNumber, randomNumber + 1);
-        }
-       return password;
-    }
-   let passs = genPassword();
-    console.log(passs);
-    const initialValues = { identityNo: "", firstName: "", lastName: "", email: "", password: `${passs}`, plaka: "" }
+export default function UserUpdate() {
+    let { id } = useParams()
+    const [user, setUser] = useState({})
     let userService = new UserService();
+    const initialValues = {
+        userId:`${user.userId}`,
+        identityNo: `${user.identityNo}`,
+        firstName: `${user.firstName}`,
+        lastName: `${user.lastName}`,
+        email: `${user.email}`,
+        password: `${user.password}`,
+        plaka: `${user.plaka}`
+    }
+
+    const loadPost = async () => {
+        await userService.getById(id).then(result => setUser(result.data.data))
+    }
+    useEffect(() => {
+
+
+
+        loadPost();
+    }, [])
+   
     const schema = Yup.object({
         identityNo: Yup.string().required("Kimlik numarası zorunludur.").min(11).max(11),
         firstName: Yup.string().required("Ad girmek zorunludur."),
@@ -30,21 +40,21 @@ export default function UserAdd() {
         password: Yup.string().required("Parola girmek zorunludur."),
         plaka: Yup.string()
 
-       
+        //insert user tokendan gelicek
     })
 
-  
-
    
+
+  
 
 
     const onSubmit = (values, { resetForm }) => {
 
-        userService.addUser(values).then((result) => {
+        userService.updateUser(values).then((result) => {
             toast.success(result?.data?.message)
         }).catch((result) => {
             toast(result?.data?.message)
-            
+            // toast("hataaa")
 
         })
         setTimeout(() => {
@@ -56,6 +66,7 @@ export default function UserAdd() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
+                enableReinitialize={true}
                 onSubmit={onSubmit}>
                 <Form className='ui form'>
                     <Label color='teal' size='large'>Kimlik No</Label>
@@ -85,8 +96,6 @@ export default function UserAdd() {
                     <Divider />
 
                     <ApartmentPasswordInput disabled={true} name="password" placeholder="*************" />
-                    <Divider />
-
 
                     <Label color='teal' size='large'>Plaka</Label>
                     <Divider />
@@ -99,7 +108,7 @@ export default function UserAdd() {
 
 
 
-                    <Button color='teal' size='large'>Kullanıcı Ekle</Button>
+                    <Button color='teal' size='large'>Kullanıcı Güncelle</Button>
                 </Form>
             </Formik>
         </Container>

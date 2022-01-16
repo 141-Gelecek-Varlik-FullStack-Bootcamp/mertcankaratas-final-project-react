@@ -24,7 +24,7 @@ export default function PaymentList() {
   
     return (
         <Container className='formElement main'>
-            <Table celled>
+            <Table padded>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>PaymentId</Table.HeaderCell>
@@ -42,10 +42,10 @@ export default function PaymentList() {
                         payments.map(payment => (
                             <Table.Row key={payment.paymentId}>
                                 <Table.Cell>{payment.userId}</Table.Cell>
-                                <Table.Cell>{payment.aparmentId}</Table.Cell>
+                                <Table.Cell>{payment.apartmentId}</Table.Cell>
                                 <Table.Cell>{payment.invoiceId}</Table.Cell>
                                 <Table.Cell>{payment.amount}</Table.Cell>
-                                <Table.Cell><Link to={`/paymentupdate/${payment.paymentId}`}><Button>Düzenle</Button></Link></Table.Cell>
+                                <Table.Cell><Link to={`/payment/update/${payment.paymentId}`}><Button>Düzenle</Button></Link></Table.Cell>
                                 <Table.Cell><Button onClick={()=> handleAddToCart(payment)}>Sil</Button></Table.Cell>
                                 <Table.Cell><Button onClick={()=> handleAddToCart(payment)}>Sepete Ekle</Button></Table.Cell>
 

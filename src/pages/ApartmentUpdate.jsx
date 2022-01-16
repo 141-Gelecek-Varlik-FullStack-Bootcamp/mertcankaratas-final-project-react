@@ -9,10 +9,10 @@ import ApartmentService from '../services/apartmentService'
 import { toast } from "react-toastify"
 export default function ApartmentUpdate() {
     let { id } = useParams()
-    const [apartment, setApartment] = useState({})
+    const [apartments, setApartments] = useState({})
     let apartmentService = new ApartmentService();
     const loadPost = async () => {
-        await apartmentService.getById(id).then(result => setApartment(result.data.data))
+        await apartmentService.getById(id).then(result => setApartments(result.data.data))
     }
     useEffect(() => {
 
@@ -22,15 +22,15 @@ export default function ApartmentUpdate() {
     }, [])
    
     const initialValues = {
-        apartmentId:`${apartment.apartmentId}`,
-        duesId: `${apartment.duesId}`, 
-        ownerId: `${apartment.ownerId}`, 
-        tenantId: `${apartment.tenantId}`, 
-        residentType: `${apartment.residentType}`, 
-        blockNo: `${apartment.blockNo}`,
-        floorNo:`${apartment.floorNo}`,
-        doorNo:`${apartment.doorNo}`,
-        apartmentType:`${apartment.apartmentType}`,
+        apartmentId:`${apartments.apartmentId}`,
+        duesId: `${apartments.duesId}`, 
+        ownerId: `${apartments.ownerId}`, 
+        tenantId: `${apartments.tenantId}`, 
+        residentType: `${apartments.residentType}`, 
+        blockNo: `${apartments.blockNo}`,
+        floorNo:`${apartments.floorNo}`,
+        doorNo:`${apartments.doorNo}`,
+        apartmentType:`${apartments.apartmentType}`,
         
 
     }
@@ -54,9 +54,7 @@ export default function ApartmentUpdate() {
         }).catch((result) => {
             toast(result?.data?.message)
         })
-        // setTimeout(() => {
-        //     resetForm();
-        // }, 3000)
+      
     }
 
    
@@ -106,10 +104,10 @@ export default function ApartmentUpdate() {
 
                    
                     <Divider/>
-                    <Input type="checkbox" defaultChecked={apartment.isBlank} className="hidden" 
+                    <Input type="checkbox" defaultChecked={apartments.isBlank} className="hidden" 
                      name="isBlank" /><label> Daire Boşluk Durumu</label>
                     <Divider />
-                    <Input type="checkbox" className="hidden" defaultChecked={apartment.isActive}  name="isActive"  /><label> Daire Aktif Durumu</label>
+                    <Input type="checkbox" className="hidden" defaultChecked={apartments.isActive}  name="isActive"  /><label> Daire Aktif Durumu</label>
                     <Divider />
                     
                  

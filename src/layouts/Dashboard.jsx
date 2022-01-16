@@ -21,6 +21,11 @@ import InvoiceTypeAdd from '../pages/InvoiceTypeAdd'
 import UserAdd from '../pages/UserAdd'
 import PaymentForm from '../pages/CreditCard'
 import ApartmentUpdate from '../pages/ApartmentUpdate';
+import UserUpdate from '../pages/UserUpdate';
+import PaymentUpdate from '../pages/PaymentUpdate';
+import ApartmentList from '../pages/ApartmentList';
+import UserList from '../pages/UserList';
+import MailList from '../pages/MailList';
 export default function Dashboard() {
     return (
         <Container>
@@ -34,14 +39,20 @@ export default function Dashboard() {
                             <Route exact path='/paymentupdate/:id' element={< PaymentDetail />}></Route>
                             <Route exact path='/login' element={< Login />}></Route>
                             <Route exact path='/payment/add' element={< PaymentAdd />}></Route>
+                            <Route exact path='/payment/update/:id' element={< PaymentUpdate />}></Route>
                             <Route exact path='/apartment/add' element={<ApartmentAdd />}></Route>
-                            <Route exact path='/apartmentupdate/:id' element={<ApartmentUpdate />}></Route>
+                            <Route exact path='/apartment/list' element={<ApartmentList />}></Route>
+                            
+                            <Route exact path='/apartment/update/:id' element={<ApartmentUpdate />}></Route>
 
                             <Route exact path='/dues/add' element={<DuesAdd/>}></Route>
                             <Route exact path='/invoicetype/add' element={<InvoiceTypeAdd/>}></Route>
                             <Route exact path='/user/add' element={<UserAdd/>}></Route>
-                            <Route exact path='/creditcard' element={<PaymentForm/>}></Route>
+                            <Route exact path='/user/update/:id' element={<UserUpdate/>}></Route>
+                            <Route exact path='/user/List' element={<UserList/>}></Route>
                             
+                            <Route exact path='/creditcard' element={<PaymentForm/>}></Route>
+                            <Route exact path='/maillist' element={<MailList/>}></Route>
 
                         </Routes>
 
