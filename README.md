@@ -1,3 +1,21 @@
+# Apartman Yönetim Sistemi FrontEnd
+  
+* Tasarım için Semantic UI  
+
+* Formlar için Formik   
+
+* Form validasyonları için Yup  
+ 
+* Backend istekleri için Axios kullanılmıştır.
+  
+
+![login](login.PNG)  
+
+![userAdd](useradd.PNG)  
+  
+![userlist](userList.PNG)  
+  
+![paymentadd](paymentAdd.PNG)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
